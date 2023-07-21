@@ -25,7 +25,7 @@ class DetailPresenter: DetailPresentationLogic
   
     func presentSomething(response: Detail.GetDetail.Response)
   {
-      let viewModel = Detail.GetDetail.ViewModel.DisplayedCountry(name: response)
+      let viewModel = Detail.GetDetail.ViewModel(displayedCountry: response)
     viewController?.displaySomething(viewModel: viewModel)
   }
 }

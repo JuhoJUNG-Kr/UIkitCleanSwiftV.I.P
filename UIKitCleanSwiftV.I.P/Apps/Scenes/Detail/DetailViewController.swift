@@ -14,7 +14,7 @@ import UIKit
 
 protocol DetailDisplayLogic: class
 {
-  func displaySomething(viewModel: Detail.Something.ViewModel)
+  func displaySomething(viewModel: Detail.GetDetail.ViewModel)
 }
 
 class DetailViewController: UIViewController, DetailDisplayLogic
@@ -79,11 +79,11 @@ class DetailViewController: UIViewController, DetailDisplayLogic
   
   func doSomething()
   {
-    let request = Detail.Something.Request()
+    let request = Detail.GetDetail.Request()
     interactor?.doSomething(request: request)
   }
   
-  func displaySomething(viewModel: Detail.Something.ViewModel)
+  func displaySomething(viewModel: Detail.GetDetail.ViewModel)
   {
     //nameTextField.text = viewModel.name
   }
