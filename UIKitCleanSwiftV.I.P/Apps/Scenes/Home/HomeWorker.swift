@@ -13,53 +13,53 @@
 import UIKit
 
 enum NetworkError: Error {
-    case networkingError
-    case dataError
-    case parseError
+  case networkingError
+  case dataError
+  case parseError
 }
 
 class HomeWorker {
-    let baseURL = "https://countriesnow.space/api/v0.1/countries/flag/unicode"
+  let baseURL = "https://countriesnow.space/api/v0.1/countries/flag/unicode"
     
-    typealias NetworkCompletion = (Result<[Country], NetworkError>) -> Void
+  typealias NetworkCompletion = (Result<[Country], NetworkError>) -> Void
     
-    ///Bring Datas
-    func parseJSON(_ countryData: Data) -> [Country]? {
-        do {
-            let countryData = try JSONDecoder().decode(CountryData.self, from: countryData)
-            return countryData.data
-        } catch {
-            print(error.localizedDescription)
-            return nil
-        }
+  /// Bring Datas
+  func parseJSON(_ countryData: Data) -> [Country]? {
+    do {
+      let countryData = try JSONDecoder().decode(CountryData.self, from: countryData)
+      return countryData.data
+    } catch {
+      print(error.localizedDescription)
+      return nil
     }
+  }
 
-    func performRequest(with urlString: String, completionHandler: @escaping NetworkCompletion) {
-        guard let url = URL(string: baseURL) else { return }
-        let session = URLSession(configuration: .default)
+  func performRequest(with urlString: String, completionHandler: @escaping NetworkCompletion) {
+    guard let url = URL(string: baseURL) else { return }
+    let session = URLSession(configuration: .default)
         
-        let task = session.dataTask(with: url) { data, response, error in
-            if error != nil {
-                completionHandler(.failure(.networkingError))
-                return
-            }
-            guard let safeData = data else {
-                completionHandler(.failure(.dataError))
-                return
-            }
+    let task = session.dataTask(with: url) { data, _, error in
+      if error != nil {
+        completionHandler(.failure(.networkingError))
+        return
+      }
+      guard let safeData = data else {
+        completionHandler(.failure(.dataError))
+        return
+      }
             
-            if let country = self.parseJSON(safeData) {
-                completionHandler(.success(country))
-            } else {
-                completionHandler(.failure(.parseError))
-            }
-        }
-        task.resume()
+      if let country = self.parseJSON(safeData) {
+        completionHandler(.success(country))
+      } else {
+        completionHandler(.failure(.parseError))
+      }
     }
+    task.resume()
+  }
     
-    func fetchCountryData(completionHandler: @escaping NetworkCompletion) {
-        performRequest(with: baseURL) { result in
-             completionHandler(result)
-        }
+  func fetchCountryData(completionHandler: @escaping NetworkCompletion) {
+    performRequest(with: baseURL) { result in
+      completionHandler(result)
     }
+  }
 }

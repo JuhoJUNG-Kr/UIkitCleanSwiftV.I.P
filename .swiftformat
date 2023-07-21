@@ -1,0 +1,14 @@
+# format options
+
+--maxwidth 200
+--ranges no-space
+--wrapparameters after-first 
+--wrapcollections before-first
+--funcattributes preserve
+--typeattributes prev-line
+--varattributes same-line
+--self init-only
+--stripunusedargs closure-only
+--trimwhitespace nonblank-lines
+--xcodeindentation enabled
+--indent 2

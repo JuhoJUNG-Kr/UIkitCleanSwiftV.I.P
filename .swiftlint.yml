@@ -1,0 +1,12 @@
+line_length: 260
+type_body_length: 400
+file_length: 600
+function_body_length: 65
+large_tuple: 3
+cyclomatic_complexity: 17
+
+disabled_rules:
+  - trailing_whitespace
+  - nesting
+  - identifier_name
+

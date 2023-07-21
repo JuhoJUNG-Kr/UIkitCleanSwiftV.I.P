@@ -8,10 +8,9 @@
 import Foundation
 
 struct CountryData: Codable {
-    let data: [Country]
+  let data: [Country]
 }
 
 struct Country: Codable {
-    let name, unicodeFlag: String
+  let name, unicodeFlag: String
 }
-

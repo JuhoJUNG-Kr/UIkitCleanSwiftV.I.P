@@ -12,90 +12,91 @@
 
 import UIKit
 
-protocol HomeDisplayLogic: AnyObject{
-    func displaySomething(viewModel: Home.FetchCountry.ViewModel)
+protocol HomeDisplayLogic: AnyObject {
+  func displaySomething(viewModel: Home.FetchCountry.ViewModel)
 }
 
 class HomeViewController: UIViewController, HomeDisplayLogic {
-    var interactor: HomeBusinessLogic?
-    var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
+  var interactor: HomeBusinessLogic?
+  var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
     
-    @IBOutlet weak var HomeTableView: UITableView!
+  @IBOutlet var HomeTableView: UITableView!
     
-    // MARK: Object lifecycle
+  // MARK: Object lifecycle
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setup()
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    setup()
+  }
+    
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    setup()
+  }
+    
+  // MARK: Setup
+    
+  private func setup() {
+    let viewController = self
+    let interactor = HomeInteractor()
+    let presenter = HomePresenter()
+    let router = HomeRouter()
+    viewController.interactor = interactor
+    viewController.router = router
+    interactor.presenter = presenter
+    presenter.viewController = viewController
+    router.viewController = viewController
+    router.dataStore = interactor
+  }
+    
+  // MARK: Routing
+    
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let scene = segue.identifier {
+      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
+      if let router = router, router.responds(to: selector) {
+        router.perform(selector, with: segue)
+      }
     }
+  }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
+  // MARK: View lifecycle
+    
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    doSomething()
+    title = "Select Country"
+    HomeTableView.dataSource = self
+    HomeTableView.delegate = self
+  }
+    
+  // MARK: Do something
+
+  var disPlayedCountry: [Home.FetchCountry.ViewModel.displayCountryList] = []
+    
+  func doSomething() {
+    let request = Home.FetchCountry.Request()
+    interactor?.getCountries(request: request)
+  }
+    
+  func displaySomething(viewModel: Home.FetchCountry.ViewModel) {
+    disPlayedCountry = viewModel.displayedCountryLists
+    DispatchQueue.main.async {
+      self.HomeTableView.reloadData()
     }
-    
-    // MARK: Setup
-    
-    private func setup() {
-        let viewController = self
-        let interactor = HomeInteractor()
-        let presenter = HomePresenter()
-        let router = HomeRouter()
-        viewController.interactor = interactor
-        viewController.router = router
-        interactor.presenter = presenter
-        presenter.viewController = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
-    }
-    
-    // MARK: Routing
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
-    }
-    
-    // MARK: View lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        doSomething()
-        title = "Select Country"
-        HomeTableView.dataSource = self
-        HomeTableView.delegate = self
-    }
-    
-    // MARK: Do something
-    var disPlayedCountry: [Home.FetchCountry.ViewModel.displayCountryList] = []
-    
-    func doSomething() {
-        let request = Home.FetchCountry.Request()
-        interactor?.getCountries(request: request)
-    }
-    
-    func displaySomething(viewModel: Home.FetchCountry.ViewModel)  {
-        disPlayedCountry = viewModel.displayedCountryLists
-        DispatchQueue.main.async {
-            self.HomeTableView.reloadData()
-        }
-    }
+  }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return disPlayedCountry.count
-    }
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return disPlayedCountry.count
+  }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier, for: indexPath) as! HomeTableViewCell
-        let displayedCountry = disPlayedCountry[indexPath.row]
-        cell.countryLabel.text = displayedCountry.name
-        cell.Flag.text = displayedCountry.unicodeFlag
-        return cell
-    }
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier, for: indexPath) as! HomeTableViewCell
+    let displayedCountry = disPlayedCountry[indexPath.row]
+    cell.countryLabel.text = displayedCountry.name
+    cell.Flag.text = displayedCountry.unicodeFlag
+    return cell
+  }
 }
