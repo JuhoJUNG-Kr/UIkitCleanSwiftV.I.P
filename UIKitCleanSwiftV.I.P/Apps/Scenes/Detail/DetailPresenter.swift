@@ -12,20 +12,17 @@
 
 import UIKit
 
-protocol DetailPresentationLogic
-{
+protocol DetailPresentationLogic {
   func presentSomething(response: Detail.GetDetail.Response)
 }
 
-class DetailPresenter: DetailPresentationLogic
-{
+class DetailPresenter: DetailPresentationLogic {
   weak var viewController: DetailDisplayLogic?
   
   // MARK: Do something
   
-    func presentSomething(response: Detail.GetDetail.Response)
-  {
-      let viewModel = Detail.GetDetail.ViewModel(displayedCountry: response)
+  func presentSomething(response: Detail.GetDetail.Response) {
+    let viewModel = Detail.GetDetail.ViewModel(displayedCountry: response)
     viewController?.displaySomething(viewModel: viewModel)
   }
 }

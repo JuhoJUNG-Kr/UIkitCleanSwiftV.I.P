@@ -12,30 +12,26 @@
 
 import UIKit
 
-protocol DetailBusinessLogic
-{
-    func doSomething(request: Detail.GetDetail.Request)
+protocol DetailBusinessLogic {
+  func doSomething(request: Detail.GetDetail.Request)
 }
 
-protocol DetailDataStore
-{
+protocol DetailDataStore {
   var countryName: Country! { get set }
 }
 
-class DetailInteractor: DetailBusinessLogic, DetailDataStore
-{
+class DetailInteractor: DetailBusinessLogic, DetailDataStore {
   var presenter: DetailPresentationLogic?
   var worker: DetailWorker?
   var countryName: Country!
   
   // MARK: Do something
   
-  func doSomething(request: Detail.GetDetail.Request)
-  {
+  func doSomething(request: Detail.GetDetail.Request) {
     worker = DetailWorker()
     worker?.doSomeWork()
     
-      let response = Detail.GetDetail.Response(country: request)
+    let response = Detail.GetDetail.Response(country: request)
     presenter?.presentSomething(response: response)
   }
 }

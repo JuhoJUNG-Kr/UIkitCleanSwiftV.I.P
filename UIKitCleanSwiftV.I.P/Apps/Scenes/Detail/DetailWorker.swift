@@ -12,9 +12,6 @@
 
 import UIKit
 
-class DetailWorker
-{
-  func doSomeWork()
-  {
-  }
+class DetailWorker {
+  func doSomeWork() {}
 }

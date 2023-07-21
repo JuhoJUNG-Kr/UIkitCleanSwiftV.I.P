@@ -12,23 +12,22 @@
 
 import UIKit
 
-enum Detail
-{
-    // MARK: Use cases
+enum Detail {
+  // MARK: Use cases
     
-    enum GetDetail
-    {
-        struct Request
-        {
-        }
-        struct Response {
-            var country: Country
-        }
-        struct ViewModel {
-            struct DisplayedCountry {
-                var name: String
-            }
-            var displayedCountry: DisplayedCountry
-        }
+  enum GetDetail {
+    struct Request {}
+
+    struct Response {
+      var country: Country
     }
+
+    struct ViewModel {
+      struct DisplayedCountry {
+        var name: String
+      }
+
+      var displayedCountry: DisplayedCountry
+    }
+  }
 }

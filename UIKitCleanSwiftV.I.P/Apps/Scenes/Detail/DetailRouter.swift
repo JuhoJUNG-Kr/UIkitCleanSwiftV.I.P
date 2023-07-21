@@ -12,25 +12,23 @@
 
 import UIKit
 
-@objc protocol DetailRoutingLogic
-{
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+@objc
+protocol DetailRoutingLogic {
+  // func routeToSomewhere(segue: UIStoryboardSegue?)
 }
 
-protocol DetailDataPassing
-{
+protocol DetailDataPassing {
   var dataStore: DetailDataStore? { get }
 }
 
-class DetailRouter: NSObject, DetailRoutingLogic, DetailDataPassing
-{
+class DetailRouter: NSObject, DetailRoutingLogic, DetailDataPassing {
   weak var viewController: DetailViewController?
   var dataStore: DetailDataStore?
   
   // MARK: Routing
   
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
+  // func routeToSomewhere(segue: UIStoryboardSegue?)
+  // {
   //  if let segue = segue {
   //    let destinationVC = segue.destination as! SomewhereViewController
   //    var destinationDS = destinationVC.router!.dataStore!
@@ -42,19 +40,19 @@ class DetailRouter: NSObject, DetailRoutingLogic, DetailDataPassing
   //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
   //    navigateToSomewhere(source: viewController!, destination: destinationVC)
   //  }
-  //}
+  // }
 
   // MARK: Navigation
   
-  //func navigateToSomewhere(source: DetailViewController, destination: SomewhereViewController)
-  //{
+  // func navigateToSomewhere(source: DetailViewController, destination: SomewhereViewController)
+  // {
   //  source.show(destination, sender: nil)
-  //}
+  // }
   
   // MARK: Passing data
   
-  //func passDataToSomewhere(source: DetailDataStore, destination: inout SomewhereDataStore)
-  //{
+  // func passDataToSomewhere(source: DetailDataStore, destination: inout SomewhereDataStore)
+  // {
   //  destination.name = source.name
-  //}
+  // }
 }

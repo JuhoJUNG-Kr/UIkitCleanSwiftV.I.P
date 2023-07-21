@@ -18,18 +18,20 @@ enum Home {
   enum FetchCountry {
     struct Request {}
     struct Response {
-        var countries: [Country]
+      var countries: [Country]
     }
+
     struct ViewModel {
-        struct displayCountryList: Comparable {
-            var name: String
-            var unicodeFlag: String
+      struct displayCountryList: Comparable {
+        var name: String
+        var unicodeFlag: String
             
-            static func < (lhs: Home.FetchCountry.ViewModel.displayCountryList, rhs: Home.FetchCountry.ViewModel.displayCountryList) -> Bool {
-                return lhs.name < rhs.name
-            }
+        static func < (lhs: Home.FetchCountry.ViewModel.displayCountryList, rhs: Home.FetchCountry.ViewModel.displayCountryList) -> Bool {
+          return lhs.name < rhs.name
         }
-        var displayedCountryLists: [displayCountryList]
+      }
+
+      var displayedCountryLists: [displayCountryList]
     }
   }
 }

@@ -13,32 +13,32 @@
 import UIKit
 
 protocol HomeBusinessLogic {
-    func getCountries(request: Home.FetchCountry.Request)
+  func getCountries(request: Home.FetchCountry.Request)
 }
 
 protocol HomeDataStore {
-    var countries: [Country]? { get }
+  var countries: [Country]? { get }
 }
 
 class HomeInteractor: HomeBusinessLogic, HomeDataStore {
-    var countries: [Country]?
+  var countries: [Country]?
     
   var presenter: HomePresentationLogic?
   var worker: HomeWorker?
   
   // MARK: Do something
   
-    func getCountries(request: Home.FetchCountry.Request) {
+  func getCountries(request: Home.FetchCountry.Request) {
     worker = HomeWorker()
-        worker?.fetchCountryData { result in
-            switch result {
-            case Result.success(let countryData):
-                self.countries = countryData
-                let response = Home.FetchCountry.Response(countries: countryData)
-                self.presenter?.presentSomething(response: response)
-            case Result.failure(let error):
-                print("\(error.localizedDescription)")
-            }
-        }
+    worker?.fetchCountryData { result in
+      switch result {
+      case let Result.success(countryData):
+        self.countries = countryData
+        let response = Home.FetchCountry.Response(countries: countryData)
+        self.presenter?.presentSomething(response: response)
+      case let Result.failure(error):
+        print("\(error.localizedDescription)")
+      }
+    }
   }
 }

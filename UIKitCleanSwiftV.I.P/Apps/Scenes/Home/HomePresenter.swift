@@ -13,7 +13,7 @@
 import UIKit
 
 protocol HomePresentationLogic {
-    func presentSomething(response: Home.FetchCountry.Response)
+  func presentSomething(response: Home.FetchCountry.Response)
 }
 
 class HomePresenter: HomePresentationLogic {
@@ -21,15 +21,14 @@ class HomePresenter: HomePresentationLogic {
   
   // MARK: Do something
   
-    func presentSomething(response: Home.FetchCountry.Response) {
-        var displayCountries: [Home.FetchCountry.ViewModel.displayCountryList] = []
-        for country in response.countries {
-            let displayedCountry = Home.FetchCountry.ViewModel.displayCountryList(name: country.name, unicodeFlag: country.unicodeFlag)
-            displayCountries.append(displayedCountry)
-            displayCountries.sort()
-            
-        }
-        let viewModel = Home.FetchCountry.ViewModel(displayedCountryLists: displayCountries)
+  func presentSomething(response: Home.FetchCountry.Response) {
+    var displayCountries: [Home.FetchCountry.ViewModel.displayCountryList] = []
+    for country in response.countries {
+      let displayedCountry = Home.FetchCountry.ViewModel.displayCountryList(name: country.name, unicodeFlag: country.unicodeFlag)
+      displayCountries.append(displayedCountry)
+      displayCountries.sort()
+    }
+    let viewModel = Home.FetchCountry.ViewModel(displayedCountryLists: displayCountries)
     viewController?.displaySomething(viewModel: viewModel)
   }
 }
