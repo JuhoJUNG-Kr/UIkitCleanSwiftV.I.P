@@ -31,7 +31,7 @@ class DetailInteractor: DetailBusinessLogic, DetailDataStore {
     worker = DetailWorker()
     worker?.doSomeWork()
     
-    let response = Detail.GetDetail.Response(country: request)
+    let response = Detail.GetDetail.Response(country: countryName)
     presenter?.presentSomething(response: response)
   }
 }

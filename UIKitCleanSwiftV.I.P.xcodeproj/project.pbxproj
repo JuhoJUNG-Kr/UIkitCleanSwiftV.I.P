@@ -29,6 +29,7 @@
 		18192D342A6000D100D6F96A /* HomeViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18192D332A6000D100D6F96A /* HomeViewStoryboard.storyboard */; };
 		18192D382A60029D00D6F96A /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18192D372A60029D00D6F96A /* Country.swift */; };
 		18192D3A2A60238D00D6F96A /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18192D392A60238D00D6F96A /* HomeTableViewCell.swift */; };
+		18AAA90D2A6E6C280074D705 /* DetailStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18AAA90C2A6E6C280074D705 /* DetailStoryboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		18192D332A6000D100D6F96A /* HomeViewStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeViewStoryboard.storyboard; sourceTree = "<group>"; };
 		18192D372A60029D00D6F96A /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		18192D392A60238D00D6F96A /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		18AAA90C2A6E6C280074D705 /* DetailStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailStoryboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				180735792A6981EC00FCBCAF /* DetailModels.swift */,
 				1807357A2A6981EC00FCBCAF /* DetailViewController.swift */,
 				1807357B2A6981EC00FCBCAF /* DetailInteractor.swift */,
+				18AAA90C2A6E6C280074D705 /* DetailStoryboard.storyboard */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 			files = (
 				18192D012A60004500D6F96A /* LaunchScreen.storyboard in Resources */,
 				18192CFE2A60004500D6F96A /* Assets.xcassets in Resources */,
+				18AAA90D2A6E6C280074D705 /* DetailStoryboard.storyboard in Resources */,
 				18192D342A6000D100D6F96A /* HomeViewStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

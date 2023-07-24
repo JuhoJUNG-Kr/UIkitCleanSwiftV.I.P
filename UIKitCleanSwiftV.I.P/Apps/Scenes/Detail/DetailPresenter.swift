@@ -22,7 +22,7 @@ class DetailPresenter: DetailPresentationLogic {
   // MARK: Do something
   
   func presentSomething(response: Detail.GetDetail.Response) {
-    let viewModel = Detail.GetDetail.ViewModel(displayedCountry: response)
+      let viewModel = Detail.GetDetail.ViewModel(displayedCountry: response.self)
     viewController?.displaySomething(viewModel: viewModel)
   }
 }

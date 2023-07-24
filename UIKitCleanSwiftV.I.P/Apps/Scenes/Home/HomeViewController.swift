@@ -72,7 +72,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     
   // MARK: Do something
 
-  var disPlayedCountry: [Home.FetchCountry.ViewModel.displayCountryList] = []
+  var disPlayedCountry: [Home.FetchCountry.ViewModel.DisplayCountryList] = []
     
   func doSomething() {
     let request = Home.FetchCountry.Request()
@@ -93,7 +93,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
   }
     
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier, for: indexPath) as! HomeTableViewCell
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier,
+                                                   for: indexPath) as? HomeTableViewCell
+    else {
+      return UITableViewCell()
+    }
     let displayedCountry = disPlayedCountry[indexPath.row]
     cell.countryLabel.text = displayedCountry.name
     cell.Flag.text = displayedCountry.unicodeFlag

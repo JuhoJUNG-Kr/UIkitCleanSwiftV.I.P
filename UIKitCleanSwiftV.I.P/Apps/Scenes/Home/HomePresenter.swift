@@ -22,9 +22,9 @@ class HomePresenter: HomePresentationLogic {
   // MARK: Do something
   
   func presentSomething(response: Home.FetchCountry.Response) {
-    var displayCountries: [Home.FetchCountry.ViewModel.displayCountryList] = []
+    var displayCountries: [Home.FetchCountry.ViewModel.DisplayCountryList] = []
     for country in response.countries {
-      let displayedCountry = Home.FetchCountry.ViewModel.displayCountryList(name: country.name, unicodeFlag: country.unicodeFlag)
+      let displayedCountry = Home.FetchCountry.ViewModel.DisplayCountryList(name: country.name, unicodeFlag: country.unicodeFlag)
       displayCountries.append(displayedCountry)
       displayCountries.sort()
     }

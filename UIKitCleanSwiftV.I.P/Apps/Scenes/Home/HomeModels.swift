@@ -22,16 +22,16 @@ enum Home {
     }
 
     struct ViewModel {
-      struct displayCountryList: Comparable {
+      struct DisplayCountryList: Comparable {
         var name: String
         var unicodeFlag: String
             
-        static func < (lhs: Home.FetchCountry.ViewModel.displayCountryList, rhs: Home.FetchCountry.ViewModel.displayCountryList) -> Bool {
+        static func < (lhs: Home.FetchCountry.ViewModel.DisplayCountryList, rhs: Home.FetchCountry.ViewModel.DisplayCountryList) -> Bool {
           return lhs.name < rhs.name
         }
       }
 
-      var displayedCountryLists: [displayCountryList]
+      var displayedCountryLists: [DisplayCountryList]
     }
   }
 }

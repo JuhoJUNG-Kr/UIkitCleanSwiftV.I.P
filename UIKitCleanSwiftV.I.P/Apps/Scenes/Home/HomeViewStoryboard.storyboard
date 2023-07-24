@@ -59,7 +59,6 @@
                                         <connections>
                                             <outlet property="Flag" destination="tEm-aQ-RFE" id="UJ8-mj-x3M"/>
                                             <outlet property="countryLabel" destination="QhT-zv-vdG" id="Ds2-EG-Cw8"/>
-                                            <segue destination="bms-T1-Vtv" kind="show" identifier="ShowDetail" id="Bxb-yF-kyY"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -83,37 +82,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1013" y="-27"/>
-        </scene>
-        <!--Detail View Controller-->
-        <scene sceneID="lu5-wj-VZK">
-            <objects>
-                <viewController storyboardIdentifier="DetailViewController" id="bms-T1-Vtv" customClass="DetailViewController" customModule="UIKitCleanSwiftV_I_P" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Wqy-97-KNd">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Au0-PF-TCz">
-                                <rect key="frame" x="170.66666666666666" y="413" width="52" height="26.333333333333314"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="qci-nz-ONb"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Au0-PF-TCz" firstAttribute="centerY" secondItem="Wqy-97-KNd" secondAttribute="centerY" id="5EO-Yh-YpM"/>
-                            <constraint firstItem="Au0-PF-TCz" firstAttribute="centerX" secondItem="Wqy-97-KNd" secondAttribute="centerX" id="VhA-2N-lKG"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="3oN-co-lnF"/>
-                    <connections>
-                        <outlet property="TitleLabel" destination="Au0-PF-TCz" id="gpX-MU-6bP"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="j5X-ZI-OhX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1932" y="-27"/>
         </scene>
         <!--Custom Navigation Controller-->
         <scene sceneID="5Kq-A7-T4D">

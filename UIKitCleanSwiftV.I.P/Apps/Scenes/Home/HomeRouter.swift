@@ -14,7 +14,7 @@ import UIKit
 
 @objc
 protocol HomeRoutingLogic {
-  func routeToSomewhere(segue: UIStoryboardSegue?)
+  func routeToDetailVC()
 }
 
 protocol HomeDataPassing {
@@ -27,23 +27,32 @@ class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
   
   // MARK: Routing
   
-  func routeToSomewhere(segue: UIStoryboardSegue?) {
-    if let segue = segue {
-      let destinationVC = segue.destination as! DetailViewController
-      var destinationDS = destinationVC.router!.dataStore!
-      passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    } else {
-      let destinationVC = viewController?.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-      var destinationDS = destinationVC.router!.dataStore!
-      passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-      navigateToDetailVC(source: viewController!, destination: destinationVC)
+  func routeToDetailVC() {
+    let destinationVC = DetailViewController()
+    if let viewController,
+       let dataStore,
+       var destinationDataStore = destinationVC.router?.dataStore
+    {
+      navigateToDetailVC(source: viewController,
+                         destination: destinationVC)
+      passDataToSomewhere(source: dataStore, destination: &destinationDataStore)
     }
+//    if let segue = segue {
+//        guard let destinationVC = segue.destination as? DetailViewController else { return }
+//      var destinationDS = destinationVC.router!.dataStore!
+//      passDataToSomewhere(source: dataStore!, destination: &destinationDS)
+//    } else {
+//      let destinationVC = viewController?.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+//      var destinationDS = destinationVC.router!.dataStore!
+//      passDataToSomewhere(source: dataStore!, destination: &destinationDS)
+//      navigateToDetailVC(source: viewController!, destination: destinationVC)
+//    }
   }
 
   // MARK: Navigation
   
   func navigateToDetailVC(source: HomeViewController, destination: DetailViewController) {
-    source.show(source, sender: nil)
+    source.navigationController?.pushViewController(destination, animated: true)
   }
   
   // MARK: Passing data
